@@ -1,8 +1,9 @@
-const API_BASE = import.meta.env.VITE_API_BASE_URL;
+const API_BASE = process.env.REACT_APP_API_BASE_URL;
 
 export async function getUsers() {
   const res = await fetch(`${API_BASE}/users`);
   if (!res.ok) throw new Error("Failed to fetch users");
+  console.log("API Base URL:", API_BASE);
   return res.json();
 }
 
