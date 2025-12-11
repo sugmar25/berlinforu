@@ -1,7 +1,8 @@
-const API_BASE = "https://simpleuserservice-eqg5a5a9frd5a5ca.canadacentral-01.azurewebsites.net";
+const API_BASE = import.meta.env.VITE_API_BASE_URL;
 
 export async function getUsers() {
   const res = await fetch(`${API_BASE}/users`);
+  if (!res.ok) throw new Error("Failed to fetch users");
   return res.json();
 }
 
@@ -11,6 +12,7 @@ export async function createUser(data) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
   });
+  if (!res.ok) throw new Error("Failed to create users");
   return res.json();
 }
 
@@ -20,6 +22,7 @@ export async function updateUser(id, data) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
   });
+  if (!res.ok) throw new Error("Failed to update users");
   return res.json();
 }
 
